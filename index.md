@@ -2,5 +2,5 @@
 
 Add here a content.
 
-- [WireCell](WireCell.html)
-- [SBND Geometry](SBNDGeometry.html)
+- [WireCell](WireCell.md)
+- [SBND Geometry](SBNDGeometry.md)
