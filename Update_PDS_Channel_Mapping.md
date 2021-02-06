@@ -1,4 +1,5 @@
 # Update the number of PDS channels
+---
 
 If you have added or removed photodetectors in your geometry, you should let LArSoft know about that. You do that by updating `$MRB_SOURCE/sbndcode/sbndcode/OpDetSim/sbnd_pds_mapping.json` which is the channel mapping of our simulation. Meaning, this is the file where the relation between the channel number and the kind of detector is established. There are a few steps you should do in order to update the number/label of your photodetectors.
 
@@ -40,7 +41,9 @@ services.LArG4Parameters.UseLitePhotons: false
 
 Now run your FHICL file
 
-> lar -c prodsingle_sbnd_givemechannels.fcl -n 1
+```
+lar -c prodsingle_sbnd_givemechannels.fcl -n 1
+```
 
 And notice that a channel map will be printed on your terminal. The map looks like
 
@@ -82,8 +85,8 @@ Now, identify the channels manually and include the proper label for each of the
   },
   (...)
 ```
-5) Move this file to `$MRB_SOURCE/sbndcode/sbndcode/OpDetSim/sbnd_pds_mapping.json`.
-6) Compile your environment
+5. Move this file to `$MRB_SOURCE/sbndcode/sbndcode/OpDetSim/sbnd_pds_mapping.json`.
+6. Compile your environment
 
 ````
 cd $MRB_BUILDDIR
