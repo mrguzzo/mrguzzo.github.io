@@ -1,5 +1,5 @@
 The structure is
 
 - WireCell
-- SBND Geometry
+- SBND Simulation
   - Update PDS Channel Mapping
