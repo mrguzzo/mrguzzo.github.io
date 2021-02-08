@@ -63,7 +63,7 @@ Now, identify the channels manually and include the proper label for each of the
 1. Create a spreadsheet with the columns you want (we are currently using `channel | pd_type | pds_box | sensible_to_vuv | sensible_to_vis | tpc`, just like you can see [here](https://docs.google.com/spreadsheets/d/1sC1uMdWCc9Qyir6qS60y43RNDyfQxHaXRdVc-ACg9Q8/edit#gid=0)).
 2. Download the spreadsheet as .cvs
 3. Run this [script](https://github.com/mrguzzo/SBND_geometry/blob/ongoingWorkBranch/create_channel_mapping.ipynb) over your .cvs spreadsheet. It will create a unreadable .json file.
-4. Open the .json file in the Firefox browser and save it in a more human readble format. It will be like the following:
+4. Open the .json file in the Firefox browser > Raw Data > Pretty Print > Save. Save it as `sbnd_pds_mapping.json`. It will be like the following:
 
 ```
 [
@@ -95,8 +95,4 @@ mrbsetenv
 mrb i -j4
 ````
 
-You should be able to run your simulation now.
-
-```
-lar -c prodsingle_sbnd.fcl
-```
+You should be able to run your simulation now using the new PDS channel mapping.
