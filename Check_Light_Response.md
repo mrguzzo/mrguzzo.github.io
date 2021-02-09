@@ -1,4 +1,4 @@
-# Check the light response
+# Access the light response
 
 After running the simulation, you can generate a plot of the number of photons per channel. To do so, follow the steps below.
 
@@ -22,7 +22,7 @@ physics:
   
   analyzers:
   {
-    pmtresponse: @local::sbnd_simphotoncounter
+    pmtresponse: @local::standard_simphotoncounter
   }
   
   simulate: [ (...) ]
@@ -32,6 +32,12 @@ physics:
 ```
 
 Make sure to add `pmtresponse` in `analyzeIt:[ ]`, and to add `analyzeIt` in `end_paths:[ ]`.
+
+At the end of the code, add:
+
+```
+physics.analyzers.pmtresponse.MakeAllPhotonsTree: true
+```
 
 ## Run the simulation
 
@@ -43,9 +49,13 @@ lar -c standard_g4_ref_sbnd.fcl -s gen.root -o g4.root
 lar -c standard_detsim_ref_sbnd.fcl -s g4.root -o detsim.root
 ```
 
-## Make the plots
+## Photons tree
 
-Run `/sbnd/app/users/mguzzo/my_codes/geometry/plot_pds_response_geometry_<version>.cc` for the geometry version you are running.
+The procedure above will generate the `pmtresponse/AllPhotons` tree in detsim.root, which contains one entry per photon.
+
+## Making a plot
+
+The code `/sbnd/app/users/mguzzo/my_codes/geometry/plot_pds_response_geometry_<version>.cc` accesses the information from the `pmtresponse/AllPhotons` and plots the number of detected photons per channel number.
 
 ```
 root -l 'plot_pds_response_geometry_<version>.cc("detsim.root")'
