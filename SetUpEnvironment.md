@@ -34,3 +34,5 @@ Include other packages
  mrbsetenv
  mrb i -j4
  ```
+
+If you are not installing the most recent uboonecode, make sure to download it (and the packages) using the version tag to avoid version conflicts. 
