@@ -2,14 +2,15 @@
 
 - Checkout files: `/pnfs/uboone/persistent/users/hanyuwei/WC-LEE/files/data_mc_cv/`
 - Example of macro: `/uboone/data/users/rfitzpat/numi_checkout/numi_plots.C`
+- [Internal Note](https://microboone-docdb.fnal.gov/cgi-bin/private/RetrieveFile?docid=33766&filename=MicroBooNE_Wire_Cell_Xs_Analysis_Internal_Note_Jan11.pdf&version=1)
 
 ## Information saved in the Checkout files
 
 - Modules used to save information from reco2 files to checkout files (from uboonecode v52): `/ubana/ubana/MicroBooNEWireCell`
 
 The information in the reco2 files follow this structure
-- `sim::MCParticles` contains both truth and reconstructed information. It contains more particle propagation information. More information here: https://nusoft.fnal.gov/larsoft/doxsvn/html/classsimb_1_1MCParticle.html
-- `sim::MCTruth` contains truth information. More information here: https://nusoft.fnal.gov/larsoft/doxsvn/html/classsimb_1_1MCTruth.html
+- `sim::MCParticles` contains both truth and reconstructed information. It contains more particle propagation information. More information [here](https://nusoft.fnal.gov/larsoft/doxsvn/html/classsimb_1_1MCParticle.html)
+- `sim::MCTruth` contains truth information. More information [here](https://nusoft.fnal.gov/larsoft/doxsvn/html/classsimb_1_1MCTruth.html)
 
 You can change `ubana/ubana/MicroBooNEWireCell/WireCellAnaTree_module.cc` if you want to save different information into the checkout file. Currently, the variables saved are relevant to LEE analysis mostly.
 
@@ -52,7 +53,7 @@ The topologies are classified as follows
     }
 ```
 
-More information: https://github.com/BNLIF/wcp-uboone-bdt/blob/main/inc/WCPLEEANA/cuts.h
+More information: [https://github.com/BNLIF/wcp-uboone-bdt/blob/main/inc/WCPLEEANA/cuts.h](https://github.com/BNLIF/wcp-uboone-bdt/blob/main/inc/WCPLEEANA/cuts.h)
 
 ## Selection cut
 
