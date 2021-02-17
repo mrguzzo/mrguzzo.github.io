@@ -2,7 +2,7 @@
 
 - Checkout files: `/pnfs/uboone/persistent/users/hanyuwei/WC-LEE/files/data_mc_cv/`
 - Example of macro: `/uboone/data/users/rfitzpat/numi_checkout/numi_plots.C`
-- [Internal Note](https://microboone-docdb.fnal.gov/cgi-bin/private/RetrieveFile?docid=33766&filename=MicroBooNE_Wire_Cell_Xs_Analysis_Internal_Note_Jan11.pdf&version=1)
+- [Numu-Argon Cross-Section Internal Note](https://microboone-docdb.fnal.gov/cgi-bin/private/RetrieveFile?docid=33766&filename=MicroBooNE_Wire_Cell_Xs_Analysis_Internal_Note_Jan11.pdf&version=1)
 
 ## Information saved in the Checkout files
 
