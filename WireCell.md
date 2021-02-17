@@ -52,6 +52,8 @@ The topologies are classified as follows
     }
 ```
 
+More information: https://github.com/BNLIF/wcp-uboone-bdt/blob/main/inc/WCPLEEANA/cuts.h
+
 ## Selection cut
 
 - Remove `tagger_info.numu_cc_flag < 0`
