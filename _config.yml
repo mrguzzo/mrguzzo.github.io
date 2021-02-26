@@ -1,3 +1,69 @@
+# theme: bulma-clean-theme
+remote_theme: chrisrhymes/bulma-clean-theme
+
 title: Marina Reggiani-Guzzo
+tagline: Marina Reggiani-Guzzo
 description: A wiki for code racks
-theme: jekyll-theme-cayman
+baseurl: "" # the subpath of your site, e.g. /blog
+# favicon: /images/sbn_logo.jpg
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - kramdown
+  - rouge
+
+exclude:
+  - Gemfile
+  - clean-theme.gemspec
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+livereload: true
+
+sass:
+  style: compressed
+  source_dir: _sass
+
+#google_analytics: UA-code-here
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      show_sidebar: false
+      hero_height: is-small
+      # favicon: /images/sbn_logo.jpg
+      hero_height: is-small
+      show_sidebar: false
+      lang: en
+      hide_footer: true
+  # -
+    # scope:
+    #   path: ""
+    #   type: "posts"
+    # values:
+    #   author: "C.S. Rhymes"
+    #   layout: post
+    #   image: https://via.placeholder.com/1200x800
+    #   show_sidebar: true
+
+markdown: kramdown
+highlighter: rouge
+syntax_highlighter: rouge
+
+footer_menu: example_footer_menu
+
+collections:
+  # products:
+  #   output: true
+  #   layout: product
+  #   image: https://via.placeholder.com/800x600
+  #   show_sidebar: false
