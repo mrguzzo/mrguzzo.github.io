@@ -126,59 +126,67 @@ balsam rm apps --name <application name>
 ```
 
 ---
-- **Create workflow and populate a database**
+## Create workflow and populate a database
 
-    The scripts are saved in `/lus/theta-fs0/projects/RecomMBNE/scrips`.
+The scripts are saved in `/lus/theta-fs0/projects/RecomMBNE/scrips`.
 
-    ```
-    python add_workflow_<file>.py
-    ```
+First you should add files to the workflow. It will essentially create a list of files that will be used as an input when we run the singularity.
 
-    You should be able to see the list of files that will be processed by typing
+```
+python add_workflow_<file>.py
+```
 
-    ```
-    balsam ls
-    ```
+You should be able to see the list of files that will be processed by typing
+
+```
+balsam ls
+```
 
 ---
-- **Submit jobs**
+## Submit jobs
 
-    ```
-    balsam submit-launch -n 8 -t 60 -A <project_name> -q debug-flat-quad --job-mode serial --wf-filter <wf_name>
-    ```
+Now that you have the commands ready (in the singularity file) and the files ready (workflow that populated the database), we can finally submit the jobs to Balsam.
 
-    Where:
+```
+balsam submit-launch -n 8 -t 60 -A <project_name> -q debug-flat-quad --job-mode serial --wf-filter <wf_name>
+```
 
-    ```
-    -n <n_nodes>          = 8                    // number of nodes
-    -t <length>           = 60                   // length
-    -A <project_name>     = ReconMBNE            // name of the project
-    ```
+Where:
 
-    After submitting jobs, you can check the status of it by running one of the options below, depending on your goal.
+```
+-n <n_nodes>          = 8                    // number of nodes
+-t <length>           = 60                   // length
+-A <project_name>     = ReconMBNE            // name of the project
+```
 
-    ```
-    balsam ls                                 // returns a table with the status of each file
-    balsam ls --by-state                      // returns a summary of the status in general
-    balsam ls --by-state --wf <wf_name>       // returns a summary of the status in general for a specific workflow
-    ```
+After submitting jobs, you can check the status of it by running one of the options below, depending on your goal.
 
-    The possible outputs of the command above are:
+```
+balsam ls                                 // returns a table with the status of each file
+balsam ls --by-state                      // returns a summary of the status in general
+balsam ls --by-state --wf <wf_name>       // returns a summary of the status in general for a specific workflow
+```
 
-    - CREATED:
-    - PREPROCESSED:
-    - JOB_FINISHED:
-    - RESTART_READY:
-    - FAILED:
+The possible outputs of the command above are:
 
-    You can also check the status of your jobs [here](https://status.alcf.anl.gov/theta/activity)
+- CREATED:
+- PREPROCESSED:
+- JOB_FINISHED:
+- RESTART_READY:
+- FAILED:
+
+You can also check the status of your jobs [here](https://status.alcf.anl.gov/theta/activity)
+
+The output of your jobs will be saved in `/uboone_balsam/data/<workflow>`.
 
 ---
 # Re-run jobs using the same files
  
-Once your jobs are done, you can check the general success rate with `balsam ls --by-state`, which will give you the number of jobs that successfully finished (JOB_FINISHED), the number that failed (FAILED) and the number that were not successfull but
+Once your jobs are done, you can check the general success rate with `balsam ls --by-state`, which will give you the number of jobs that successfully finished (JOB_FINISHED), the number that failed (FAILED) and the number that were not successfull but didn't faile either (RESTART_READY).
 
 ## Re-run failed jobs
+
+If you submit your jobs again, it skip the JOB_FINISHED/FAILED ones and will re-submit the RESTART_READY ones. You can do it as many times as needed until all files are successful. You might want to change the FAILED status to RESTART_READY, so those are also re-submitted.
 
 1. Change the status of the FAILED ones to RESTART_READY.
     ```
@@ -192,7 +200,7 @@ Once your jobs are done, you can check the general success rate with `balsam ls 
 ## Re-run all files again
 
 
-If you want to re-run your Balsam jobs on the same files, you should do the following:
+If you want to re-run your Balsam jobs on all the files of your workflow, you have to "reboot" everything., you should do the following:
 
 1. Clean the balsam database
     ```
