@@ -2,12 +2,12 @@
 
 The first thing you should know about working on Theta is that there are at least three ways to submit commands on Theta. They are generally used in different circunstances, and the way to submit commands is different in each case.
 
-1. Log-in nodes (locally)
+1. **Log-in nodes (locally)**
     - Purpose:
-2. Compute nodes (through Balsam)
+2. **Compute nodes (through Balsam)**
     - Purpose: Usually used for small tests 
     - How to submit: through singularities 
-3. On SSD
+3. **On SSD**
     - Purpose: SSD nodes run jobs much faster as they split the task among the nodes
     - How to submit: the commands on the SSD are 
         ```
