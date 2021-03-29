@@ -1,3 +1,21 @@
+# Working on Theta
+
+The first thing you should know about working on Theta is that there are at least three ways to submit commands on Theta. They are generally used in different circunstances, and the way to submit commands is different in each case.
+
+1. Log-in nodes (locally)
+    - Purpose:
+2. Compute nodes (through Balsam)
+    - Purpose: Usually used for small tests 
+    - How to submit: through singularities 
+3. On SSD
+    - Purpose: SSD nodes run jobs much faster as they split the task among the nodes
+    - How to submit: the commands on the SSD are 
+        ```
+        aprun -n 1 -N 1 -cc none <normal_linux_command>
+        ```
+
+You will find more details below on how to work in each of the scenarios above.
+
 # Producing files on the log-in node (locally)
 
 To run LArSoft commands on Theta, you should do use a bash (aka singularity) code like the one below. 
@@ -51,7 +69,6 @@ Everything between `EOF ... EOF` is being run inside singularity. The `EOF` thin
 
 # Producing files on the compute nodes (submitted through Balsam)
 
----
 ## Activate the database
 
 Run every time you log in on a Theta gpvm.
@@ -202,7 +219,7 @@ If you submit your jobs again, it skip the JOB_FINISHED/FAILED ones and will re-
 
 If you want to re-run your Balsam jobs on all the files of your workflow, you have to "reboot" everything., you should do the following:
 
-1. Clean the balsam database
+1. Clean the balsam database. Make sure you are cleaning the correct workflow in `workflow_database_clean.py`, and run:
     ```
     python scripts/workflow_database_clean.py
     balsam ls                                        // should be empty
@@ -216,7 +233,36 @@ If you want to re-run your Balsam jobs on all the files of your workflow, you ha
     ```
     rm -r /lus/theta-fs0/projects/ReconMBNE/uboone_balsam/data/<workflow>
     ```
+
+4. Check if there are current jobs that you want to kill
+    ```
+    qstat | grep <username>
+    qdel <jobid>
+    ```
+    Remember that if you are running in the `debug-flat-quad` mode, you can only have one job running at a time.
+
 4. Submit your jobs again.
     ```
     balsam submit-launch -n 8 -t 60 -A <project_name> -q debug-flat-quad --job-mode serial --wf-filter <wf_name>
+    ```
+
+## Create tarball
+
+1. Log into a Theta machine
+2. Create a folder like `uboonecode_version_tar_files` and cd into it
+3. Generate the tarball (it takes a very long time)
+    ```
+    tar -zcvf uboonecode_version.tar.gz -X exclude.txt ../uboonecode_version
+    ```
+
+## Accessing SSDs
+
+1. Log in
+2. Request access to a Theta compute node
+    ```
+    qsub -I -n 1 -t 60 -q debug-flat-quad -A ReconMBNE
+    ```
+3. Once you are in a SSD node, every command should be done as follows
+    ```
+
     ```
